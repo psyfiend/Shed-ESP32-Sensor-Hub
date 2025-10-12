@@ -21,7 +21,7 @@ const char* MQTT_USER = "mqtt_user";
 const char* MQTT_PASSWORD = "mqtt_user3700";
 
 // --- Application Logic ---
-unsigned long INITIAL_MOTION_TIMER_DURATION_MS = 60000;  // 60 seconds
+unsigned long INITIAL_MOTION_TIMER_DURATION_MS = 10000;  // 10 seconds
 unsigned long INITIAL_MANUAL_TIMER_DURATION_MS = 300000; // 5 minutes
 
 // --- MQTT Topics ---

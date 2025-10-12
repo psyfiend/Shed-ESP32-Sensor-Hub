@@ -63,10 +63,10 @@ void reconnect() {
     client.publish(MQTT_TOPIC_DEVICE_AVAILABILITY, MQTT_PAYLOAD_ONLINE, true);
     
     // Publish the initial timer states (in seconds)
-    String motion_payload = String(get_motion_timer_duration() / 1000);
+    String motion_payload = String(INITIAL_MOTION_TIMER_DURATION_MS / 1000);
     client.publish(MQTT_TOPIC_MOTION_TIMER_STATE, motion_payload.c_str(), true);
 
-    String manual_payload = String(get_manual_timer_duration() / 1000);
+    String manual_payload = String(INITIAL_MANUAL_TIMER_DURATION_MS / 1000);
     client.publish(MQTT_TOPIC_MANUAL_TIMER_STATE, manual_payload.c_str(), true);
 
     Serial.println("Published initial timer states.");

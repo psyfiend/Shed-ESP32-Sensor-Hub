@@ -19,7 +19,8 @@ void handle_manual_timer_command(String message);
 
 // --- Data Getters ---
 // For publishing initial state on MQTT reconnect
-unsigned long get_motion_timer_duration();
-unsigned long get_manual_timer_duration();
+// unsigned long get_motion_timer_duration();
+// unsigned long get_manual_timer_duration();
+unsigned long get_current_timer_duration();
 
 #endif // LIGHT_CONTROLLER_H
