@@ -89,7 +89,9 @@ void loop_light_controller() {
     lightOnTime = millis();
     Serial.println(lightManualOverride ? "Manual override: Turning relay ON." : "Occupancy detected: Turning relay ON.");
     digitalWrite(LIGHT_RELAY_PIN, HIGH);
-    client.publish(MQTT_TOPIC_OCCUPANCY_STATE, MQTT_PAYLOAD_ON, true);
+    if (!lightManualOverride) {
+      client.publish(MQTT_TOPIC_OCCUPANCY_STATE, MQTT_PAYLOAD_ON, true);
+    }
     client.publish(MQTT_TOPIC_LIGHT_STATE, MQTT_PAYLOAD_ON, true);
 
   } else if (!relayShouldBeOn && lightIsOn) {
