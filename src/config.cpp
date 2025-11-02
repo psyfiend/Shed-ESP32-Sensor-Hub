@@ -3,6 +3,8 @@
 
 
 
+
+
 // --- Device Configuration ---
 const char* DEVICE_ID = "shed_sensor_hub";
 
@@ -38,6 +40,7 @@ const char* MQTT_TOPIC_LIGHT_COMMAND = "home/shed/light/main/command";
 const char* MQTT_BASE_TOPIC_MOTION_TIMER = "home/shed/number/motion_timer";
 const char* MQTT_TOPIC_MOTION_TIMER_STATE = "home/shed/number/motion_timer/state";
 const char* MQTT_TOPIC_MOTION_TIMER_COMMAND = "home/shed/number/motion_timer/command";
+const char* MQTT_TOPIC_TIMER_REMAINING_STATE = "home/shed/sensor/light_timer_remaining/state";
 
 const char* MQTT_BASE_TOPIC_MANUAL_TIMER = "home/shed/number/manual_timer";
 const char* MQTT_TOPIC_MANUAL_TIMER_STATE = "home/shed/number/manual_timer/state";
@@ -45,9 +48,11 @@ const char* MQTT_TOPIC_MANUAL_TIMER_COMMAND = "home/shed/number/manual_timer/com
 
 // --- Sensors ---
 const char* MQTT_TOPIC_MOTION_STATE = "home/shed/binary_sensor/motion/state";
-const char* MQTT_TOPIC_OCCUPANCY_STATE = "home/shed/binary_sensor/occupancy/state"; // NEW
-const char* MQTT_TOPIC_LUX_STATE = "home/shed/sensor/lux/state";
-const char* MQTT_TOPIC_TIMER_REMAINING_STATE = "home/shed/sensor/light_timer_remaining/state"; // NEW
+const char* MQTT_TOPIC_OCCUPANCY_STATE = "home/shed/binary_sensor/occupancy/state";
+const char* MQTT_TOPIC_TEMPERATURE_SHED_STATE = "home/shed/sensor/temperature/state";
+const char* MQTT_TOPIC_HUMIDITY_SHED_STATE = "home/shed/sensor/humidity/state";
+const char* MQTT_TOPIC_PRESSURE_SHED_STATE = "home/shed/sensor/pressure/state";
+const char* MQTT_TOPIC_LUX_SHED_STATE = "home/shed/sensor/lux/state";
 
 // --- MQTT Payloads ---
 const char* MQTT_PAYLOAD_ONLINE = "online";

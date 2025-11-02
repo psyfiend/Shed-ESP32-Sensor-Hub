@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-static const int DEVICE_DISCOVERY_PAYLOAD_SIZE = 8192; // Size of the JSON payload for MQTT Discovery
+static const int DEVICE_DISCOVERY_PAYLOAD_SIZE = 4096; // Size of the JSON payload for MQTT Discovery
 
 // --- Device Configuration ---
 extern const char* DEVICE_ID;
@@ -40,6 +40,7 @@ extern const char* MQTT_TOPIC_LIGHT_COMMAND;
 extern const char* MQTT_BASE_TOPIC_MOTION_TIMER;
 extern const char* MQTT_TOPIC_MOTION_TIMER_STATE;
 extern const char* MQTT_TOPIC_MOTION_TIMER_COMMAND;
+extern const char* MQTT_TOPIC_TIMER_REMAINING_STATE;
 
 extern const char* MQTT_BASE_TOPIC_MANUAL_TIMER;
 extern const char* MQTT_TOPIC_MANUAL_TIMER_STATE;
@@ -47,9 +48,11 @@ extern const char* MQTT_TOPIC_MANUAL_TIMER_COMMAND;
 
 // --- Sensors ---
 extern const char* MQTT_TOPIC_MOTION_STATE;
-extern const char* MQTT_TOPIC_OCCUPANCY_STATE; // NEW
-extern const char* MQTT_TOPIC_LUX_STATE;
-extern const char* MQTT_TOPIC_TIMER_REMAINING_STATE; // NEW
+extern const char* MQTT_TOPIC_OCCUPANCY_STATE;
+extern const char* MQTT_TOPIC_TEMPERATURE_SHED_STATE; // NEW
+extern const char* MQTT_TOPIC_HUMIDITY_SHED_STATE; // NEW
+extern const char* MQTT_TOPIC_PRESSURE_SHED_STATE; // NEW
+extern const char* MQTT_TOPIC_LUX_SHED_STATE; // NEW
 
 // --- MQTT Payloads ---
 extern const char* MQTT_PAYLOAD_ONLINE;

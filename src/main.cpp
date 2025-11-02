@@ -6,6 +6,7 @@
 #include "config.h"
 #include "connections.h"
 #include "light_controller.h"
+#include "sensors.h"
 
 // --- Global Objects ---
 WiFiClient espClient;
@@ -18,6 +19,7 @@ void setup() {
   Serial.begin(115200);
 
   setup_light_controller(); // Set up the pins and sensors for the light controller
+  setup_environmental_sensors(); // Set up environmental sensors
 
   setup_wifi();
   
@@ -39,4 +41,5 @@ void loop() {
   }
 
   loop_light_controller(); // Run the core logic for the light controller
+  read_environmental_sensors(); // Read environmental sensors
 }

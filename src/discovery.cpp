@@ -98,6 +98,45 @@ void mqtt_discovery() {
     occupancy_sensor_cmp["pl_on"] = MQTT_PAYLOAD_ON;
     occupancy_sensor_cmp["pl_off"] = MQTT_PAYLOAD_OFF;
 
+    // Temperature Sensor (°F)
+    JsonObject temp_sensor_cmp = cmps_doc["shed_temp_sensor"].to<JsonObject>();
+    temp_sensor_cmp["name"] = "Shed Temperature";
+    temp_sensor_cmp["p"] = "sensor";
+    temp_sensor_cmp["dev_cla"] = "temperature";
+    temp_sensor_cmp["unit_of_meas"] = "°F";
+    temp_sensor_cmp["stat_cla"] = "measurement";
+    temp_sensor_cmp["uniq_id"] = "shed_sensor_hub_temp_sensor";
+    temp_sensor_cmp["object_id"] = "shed_temp_sensor";
+    temp_sensor_cmp["stat_t"] = MQTT_TOPIC_TEMPERATURE_SHED_STATE;      // home/shed/sensor/temperature/state
+    temp_sensor_cmp["avty_t"] = MQTT_TOPIC_DEVICE_AVAILABILITY;    // devices/shed_sensor_hub/status
+    temp_sensor_cmp["val_tpl"] = "{{ value | float }}";          // Ensure the value is treated as a float
+
+    // Humidity Sensor (%)
+    JsonObject humidity_sensor_cmp = cmps_doc["shed_humidity_sensor"].to<JsonObject>();
+    humidity_sensor_cmp["name"] = "Shed Humidity";
+    humidity_sensor_cmp["p"] = "sensor";
+    humidity_sensor_cmp["dev_cla"] = "humidity";
+    humidity_sensor_cmp["unit_of_meas"] = "%";
+    humidity_sensor_cmp["stat_cla"] = "measurement";
+    humidity_sensor_cmp["uniq_id"] = "shed_sensor_hub_humidity_sensor";
+    humidity_sensor_cmp["object_id"] = "shed_humidity_sensor";
+    humidity_sensor_cmp["stat_t"] = MQTT_TOPIC_HUMIDITY_SHED_STATE;      // home/shed/sensor/humidity/state
+    humidity_sensor_cmp["avty_t"] = MQTT_TOPIC_DEVICE_AVAILABILITY;  // devices/shed_sensor_hub/status
+    humidity_sensor_cmp["val_tpl"] = "{{ value | float }}";          // Ensure the value is treated as a float
+
+    // Pressure Sensor (hPa)
+    JsonObject pressure_sensor_cmp = cmps_doc["shed_pressure_sensor"].to<JsonObject>();
+    pressure_sensor_cmp["name"] = "Shed Pressure";
+    pressure_sensor_cmp["p"] = "sensor";
+    pressure_sensor_cmp["dev_cla"] = "atmospheric_pressure";
+    pressure_sensor_cmp["unit_of_meas"] = "hPa";
+    pressure_sensor_cmp["stat_cla"] = "measurement";
+    pressure_sensor_cmp["uniq_id"] = "shed_sensor_hub_pressure_sensor";
+    pressure_sensor_cmp["object_id"] = "shed_pressure_sensor";
+    pressure_sensor_cmp["stat_t"] = MQTT_TOPIC_PRESSURE_SHED_STATE;      // home/shed/sensor/pressure/state
+    pressure_sensor_cmp["avty_t"] = MQTT_TOPIC_DEVICE_AVAILABILITY;  // devices/shed_sensor_hub/status
+    pressure_sensor_cmp["val_tpl"] = "{{ value | float }}";          // Ensure the value is treated as a float
+
     // Ambient Light Sensor (lux)
     JsonObject lux_sensor_cmp = cmps_doc["shed_lux_sensor"].to<JsonObject>();
     lux_sensor_cmp["name"] = "Shed Ambient Light";
@@ -107,7 +146,7 @@ void mqtt_discovery() {
     lux_sensor_cmp["stat_cla"] = "measurement";
     lux_sensor_cmp["uniq_id"] = "shed_sensor_hub_lux_sensor";
     lux_sensor_cmp["object_id"] = "shed_lux_sensor";
-    lux_sensor_cmp["stat_t"] = MQTT_TOPIC_LUX_STATE;            // home/shed/sensor/lux/state
+    lux_sensor_cmp["stat_t"] = MQTT_TOPIC_LUX_SHED_STATE;            // home/shed/sensor/lux/state
     lux_sensor_cmp["avty_t"] = MQTT_TOPIC_DEVICE_AVAILABILITY;  // devices/shed_sensor_hub/status
     lux_sensor_cmp["val_tpl"] = "{{ value | float }}";          // Ensure the value is treated as a float
 

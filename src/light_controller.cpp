@@ -1,6 +1,6 @@
 #include <Arduino.h>
-#include <Wire.h>
-#include <Adafruit_VEML7700.h>
+// #include <Wire.h>
+// #include <Adafruit_VEML7700.h>
 #include <PubSubClient.h>
 #include "light_controller.h"
 #include "config.h"
@@ -9,7 +9,7 @@
 extern PubSubClient client;
 
 // --- State Tracking Variables ---
-Adafruit_VEML7700 veml;
+// Adafruit_VEML7700 veml;
 bool lightIsOn = false;
 bool lightManualOverride = false;
 unsigned long lastMotionTime = 0;
@@ -23,9 +23,9 @@ unsigned long motionTimerDuration = INITIAL_MOTION_TIMER_DURATION_MS;
 unsigned long manualTimerDuration = INITIAL_MANUAL_TIMER_DURATION_MS;
 
 // --- Non-Blocking Timers ---
-unsigned long lastLuxReadTime = 0;
+// unsigned long lastLuxReadTime = 0;
 // unsigned long lastTimerRemainingPublish = 0;
-const int LUX_READ_INTERVAL = 1000; // Read lux every 1 seconds
+// const int LUX_READ_INTERVAL = 1000; // Read lux every 1 seconds
 // const int TIMER_REMAINING_PUBLISH_INTERVAL = 1000; // Publish countdown every 1 second
 
 // --- Private Function Prototypes ---
@@ -41,14 +41,16 @@ void setup_light_controller() {
   digitalWrite(LIGHT_RELAY_PIN, LOW);
 
   // Initialize Lux Sensor
-  Serial.println("Initializing VEML7700 Lux Sensor...");
-  if (!veml.begin()) {
-    Serial.println("Failed to find VEML7700 chip");
-  } else {
-    Serial.println("VEML7700 Initialized.");
-    veml.setGain(VEML7700_GAIN_1);
-    veml.setIntegrationTime(VEML7700_IT_100MS);
-  }
+  // Serial.println("Initializing VEML7700 Lux Sensor...");
+  // if (!veml.begin()) {
+    // Serial.println("Failed to find VEML7700 chip");
+  // } else {
+    // Serial.println("VEML7700 Initialized.");
+    // veml.setGain(VEML7700_GAIN_1);
+    // veml.setIntegrationTime(VEML7700_IT_100MS);
+  // }
+  Serial.println("Light Controller Initialized.");
+  delay(500); // Pause for serial monitor
 }
 
 // --- Main Loop Function ---
@@ -64,13 +66,13 @@ void loop_light_controller() {
   }
 
   // --- Publish Lux periodically ---
-  if (millis() - lastLuxReadTime > LUX_READ_INTERVAL) {
-    lastLuxReadTime = millis();
-    float currentLux = veml.readLux();
-    char payload[10];
-    dtostrf(currentLux, 1, 2, payload);
-    client.publish(MQTT_TOPIC_LUX_STATE, payload, true);
-  }
+  // if (millis() - lastLuxReadTime > LUX_READ_INTERVAL) {
+    // lastLuxReadTime = millis();
+    // float currentLux = veml.readLux();
+    // char payload[10];
+    // dtostrf(currentLux, 1, 2, payload);
+    // client.publish(MQTT_TOPIC_LUX_SHED_STATE, payload, true);
+  // }
 
   // --- Core Light Logic ---
   if (!lightManualOverride && pirState == HIGH) {
