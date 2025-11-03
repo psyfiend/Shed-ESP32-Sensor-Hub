@@ -3,6 +3,7 @@
 #include <PubSubClient.h>
 
 // Include our modularized files
+#include "ota_manager.h"
 #include "config.h"
 #include "connections.h"
 #include "light_controller.h"
@@ -22,6 +23,7 @@ void setup() {
   setup_environmental_sensors(); // Set up environmental sensors
 
   setup_wifi();
+  setup_ota();
   
   // Configure MQTT client
   client.setServer(MQTT_SERVER, 1883);
@@ -40,6 +42,7 @@ void loop() {
     client.loop();
   }
 
+  loop_ota(); // Handle OTA updates
   loop_light_controller(); // Run the core logic for the light controller
   read_environmental_sensors(); // Read environmental sensors
 }
