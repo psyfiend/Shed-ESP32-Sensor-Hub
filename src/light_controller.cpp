@@ -145,9 +145,13 @@ void handle_light_command(String message) {
   }
 }
 
+// --- Hardened MQTT Numerical Handlers ---
 void handle_motion_timer_command(String message) {
-  unsigned long newDurationSec = message.toInt();
-  if (newDurationSec >= 10 && newDurationSec <= 3600) {
+  char* endPtr;
+  unsigned long newDurationSec = strtoul(message.c_str(), &endPtr, 10);
+
+  // Check if conversion was successful and within valid range
+  if (*endPtr == '\0' && newDurationSec >= 10 && newDurationSec <= 3600) {
     motionTimerDuration = newDurationSec * 1000;
     Serial.print("Motion timer updated to ");
     Serial.print(newDurationSec);
@@ -155,13 +159,16 @@ void handle_motion_timer_command(String message) {
     // Acknowledge the change by publishing the new state
     client.publish(MQTT_TOPIC_MOTION_TIMER_STATE, message.c_str(), true);
   } else {
-    Serial.println("Received invalid motion timer duration. Must be between 10 and 3600 seconds.");
+    Serial.printf("Received invalid motion timer duration: %s. Must be between 10 and 3600 seconds.\n", message.c_str());
   }
 }
 
 void handle_manual_timer_command(String message) {
-  unsigned long newDurationSec = message.toInt();
-  if (newDurationSec >= 10 && newDurationSec <= 3600) {
+  char* endPtr;
+  unsigned long newDurationSec = strtoul(message.c_str(), &endPtr, 10);
+
+  // Check if conversion was successful and within valid range
+  if (*endPtr == '\0' && newDurationSec >= 10 && newDurationSec <= 3600) {
     manualTimerDuration = newDurationSec * 1000;
     Serial.print("Manual timer updated to ");
     Serial.print(newDurationSec);
@@ -169,7 +176,7 @@ void handle_manual_timer_command(String message) {
     // Acknowledge the change by publishing the new state
     client.publish(MQTT_TOPIC_MANUAL_TIMER_STATE, message.c_str(), true);
   } else {
-    Serial.println("Received invalid manual timer duration. Must be between 10 and 3600 seconds.");
+    Serial.printf("Received invalid manual timer duration: %s. Must be between 10 and 3600 seconds.\n", message.c_str());
   }
 }
 
